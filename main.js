@@ -1,5 +1,3 @@
-
-
 var famousPeople = [
 	{
 	name: "Dave Grohl",
@@ -50,16 +48,27 @@ $(".person-container").click(function() {
 	$(this).siblings().removeClass("dotted-border");
 	$(this).addClass("dotted-border");
 	$("#input-text").focus();
+	editBio();
 });
 
+function editBio () {
+    var clickedCard = $(".dotted-border").find("p").text();
+    $("#input-text").val(clickedCard);
+}                    
 
+function copyText (event) {
+    if (event.keyCode !== 13) {
+        $(".dotted-border").find("p").text($("#input-text").val());
+    }
+    else {
+        $("#input-text").blur();
+        $("#input-text").val("");
+        $(".dotted-border").removeClass(".dotted-border");
+    }
+}
 
-
-
-
-
-
-
-
+$("#input-text").keyup(function(event) {
+    copyText(event);
+});
 
 
